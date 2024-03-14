@@ -24,7 +24,13 @@ export const loadProviders = async () => {
 };
 
 // LevelDOWN compatible database for storing encrypted wallets.
-const db = new BrowserLevel('');
+// const db = new BrowserLevel('');
+
+const isBrowser = typeof window !== 'undefined';
+let db = {};
+if (isBrowser) {
+  db = new BrowserLevel('');
+}
 
 const setLogging = () => {
   const logMessage = console.log;
